@@ -13,7 +13,9 @@ export class BankAccount {
 
     }
     withdraw (amount: number): void{
-        if(amount<0)
+        if(amount<0){
+            this.balance 
+        }
     }
 
 
