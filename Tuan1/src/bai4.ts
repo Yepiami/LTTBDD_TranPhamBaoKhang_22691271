@@ -1,13 +1,11 @@
 export class Rectangle {
-    width: number;
-    height: number;
+  constructor(public width: number, public height: number) {}
 
-    constructor(width: number, height: number) {
-       this.width = width;
-       this.height = height;
-    }
+  area(): number {
+    return this.width * this.height;
+  }
 
-    display(): void {
-        console.log(`Area: ${this.height* this.width}, Perimeter: ${(this.height+this.width)*2}`);
-    }
+  perimeter(): number {
+    return 2 * (this.width + this.height);
+  }
 }
