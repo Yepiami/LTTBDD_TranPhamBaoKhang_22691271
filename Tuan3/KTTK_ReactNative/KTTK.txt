@@ -1,0 +1,49 @@
+import React, { useState } from "react";
+import { View, Text,TouchableOpacity, StyleSheet, FlatList } from "react-native";
+export default function App() {
+  const [seats, setSeats] = useState(Array(20).fill(false));
+
+  const Seat = ({number, isBooked,onPress}) => {
+    <TouchableOpacity
+      style = {[styles.seat,{backgroundColor:isBooked ? "red":"gray"}]}
+      onPress = {onPress}
+    >
+      <Text style={styles.seatText}>{number}</Text>
+    </TouchableOpacity>
+
+  }
+  const toggleSeat=(index) =>{
+    const newSeats = [...seats];
+    newSeats[index] = !newSeats[index];
+    setSeats(newSeats);
+
+  }
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>So do phong</Text>
+      <FlatList>
+        data={seats}
+        keyExtractor = {(_,index) => index.toString()}
+        numColumns = {5}
+        renderItem = {({item, index}) => (
+        <Seat
+          number = {index + 1}
+          isBooked = {item}
+          onPress = {() => toggleSeat(index)}
+        
+          />
+        )}
+        contentContainerStyle = {styles.grid}
+        </FlatList>
+    </View>
+  );
+}
+const styles = StyleSheet.create({
+  container: { paddingTop: 16, backgroundColor: "#fff", flex: 1, alignItems:"center" },
+  seatText:{color:"white",fontWeight:"Bold"},
+  seat: { width:50, height:50, margin:8, justifyContent:"center",alignItems:"center",borderRadius:6 },
+  title: { fontSize: 16, fontWeight: "600" ,marginBottom:20},
+  grid:{alignItems:"center"}
+  
+});
+
